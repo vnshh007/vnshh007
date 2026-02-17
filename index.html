@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>A SPECIAL PAGE FOR JAYA 💖</title>
+
+<!-- Beautiful Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+
+<style>
+    body {
+        margin: 0;
+        overflow: hidden;
+        text-align: center;
+        background: linear-gradient(135deg, #ffb6c1, #ffc0cb, #ffd1dc);
+        font-family: 'Poppins', sans-serif;
+        color: white;
+        cursor: none; /* For sparkle cursor */
+    }
+
+    h1 {
+        margin-top: 100px;
+        font-size: 60px;
+        font-family: 'Dancing Script', cursive;
+        text-shadow: 0 0 20px #ff69b4, 0 0 40px #ff1493;
+        animation: glow 2s infinite alternate;
+    }
+
+    @keyframes glow {
+        from { text-shadow: 0 0 10px #ff69b4; }
+        to { text-shadow: 0 0 30px #ff1493, 0 0 50px #ff69b4; }
+    }
+
+    button {
+        padding: 15px 35px;
+        font-size: 20px;
+        border-radius: 20px;
+        border: none;
+        background: white;
+        color: #ff4d88;
+        cursor: pointer;
+        transition: 0.3s;
+        font-weight: bold;
+    }
+
+    button:hover {
+        transform: scale(1.1);
+    }
+
+    #message {
+        margin-top: 40px;
+        font-size: 28px;
+        min-height: 80px;
+        font-weight: 500;
+    }
+
+    /* Floating Hearts */
+    .heart {
+        position: fixed;
+        bottom: -20px;
+        font-size: 24px;
+        animation: floatUp 6s linear forwards;
+        z-index: 999;
+    }
+
+    @keyframes floatUp {
+        0% { transform: translateY(0) scale(1); opacity: 1; }
+        100% { transform: translateY(-120vh) scale(1.5); opacity: 0; }
+    }
+
+    /* Sparkle cursor */
+    .sparkle {
+        position: fixed;
+        pointer-events: none;
+        font-size: 14px;
+        animation: sparkleFade 1s linear forwards;
+        z-index: 1000;
+    }
+
+    @keyframes sparkleFade {
+        0% { opacity: 1; transform: scale(1); }
+        100% { opacity: 0; transform: scale(2); }
+    }
+
+    /* Confetti */
+    .confetti {
+        position: fixed;
+        width: 10px;
+        height: 10px;
+        background-color: white;
+        top: 0;
+        animation: fall 4s linear forwards;
+        z-index: 999;
+    }
+
+    @keyframes fall {
+        to {
+            transform: translateY(100vh) rotate(720deg);
+            opacity: 0;
+        }
+    }
+</style>
+</head>
+
+<body>
+
+<h1>MADE  THIS SPECAILLY FOR YOU JAYA 💖</h1>
+<p>Click to see your surprise ✨</p>
+
+<button onclick="startSurprise()">Click to see surprise 🎁</button>
+
+<div id="message"></div>
+
+<script>
+/* Typing Animation */
+const text = " YOU ARE TRULY A VERY SPEICAL PERSON FOR ME \n YOU ARE REALLY THE BEST PERSON I HAVE EVER MET";
+let index = 0;
+
+function typeWriter() {
+    if (index < text.length) {
+        document.getElementById("message").innerHTML += text.charAt(index);
+        index++;
+        setTimeout(typeWriter, 50);
+    }
+}
+
+/* Confetti Explosion */
+function createConfetti() {
+    for (let i = 0; i < 80; i++) {
+        const confetti = document.createElement("div");
+        confetti.classList.add("confetti");
+        confetti.style.left = Math.random() * 100 + "vw";
+        confetti.style.backgroundColor = ["#ff4d88","#ffd700","#ffffff","#ff69b4"][Math.floor(Math.random()*4)];
+        confetti.style.animationDuration = (2 + Math.random() * 2) + "s";
+        document.body.appendChild(confetti);
+
+        setTimeout(() => confetti.remove(), 4000);
+    }
+}
+
+/* Surprise Button Function */
+function startSurprise() {
+    document.getElementById("message").innerHTML = "";
+    index = 0;
+    typeWriter();
+    createConfetti();
+}
+
+/* Floating Hearts Generator */
+function createHeart() {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (20 + Math.random() * 25) + "px";
+    heart.style.animationDuration = (4 + Math.random() * 3) + "s";
+    document.body.appendChild(heart);
+
+    setTimeout(() => heart.remove(), 6000);
+}
+setInterval(createHeart, 300);
+
+/* Sparkle Cursor Effect */
+document.addEventListener("mousemove", function(e) {
+    const sparkle = document.createElement("div");
+    sparkle.classList.add("sparkle");
+    sparkle.innerHTML = "✨";
+    sparkle.style.left = e.clientX + "px";
+    sparkle.style.top = e.clientY + "px";
+    document.body.appendChild(sparkle);
+
+    setTimeout(() => sparkle.remove(), 1000);
+});
+</script>
+
+</body>
+</html>
